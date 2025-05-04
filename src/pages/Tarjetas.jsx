@@ -19,11 +19,6 @@ const Tarjeta = () => {
 
   const handleClick = () => {
     setActive(true);
-    if (audioRef.current) {
-      audioRef.current.play().catch((error) => {
-        console.error("No se pudo reproducir el audio:", error);
-      });
-    }
   };
 
   return (
@@ -33,15 +28,6 @@ const Tarjeta = () => {
           ¡Presiona el centro del sobre!
         </p>
       )}
-
-      <div style={{ height: "0px" }}>
-        <audio
-          ref={audioRef}
-          src="/audio/cancion.mp3"
-          preload="auto"
-          controls
-        />
-      </div>
 
       <div className="card">
         <div

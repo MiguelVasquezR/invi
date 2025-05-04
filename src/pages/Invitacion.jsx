@@ -225,7 +225,7 @@ const Invitacion = () => {
       <div
         className="relative"
         style={{
-          backgroundImage: `url(${BellaInicio.src})`,
+          backgroundImage: `url(https://res.cloudinary.com/di3ldc36w/image/upload/v1746282457/IMG_0809_rr6044.jpg)`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           width: "100%",
