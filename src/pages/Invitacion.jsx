@@ -31,6 +31,8 @@ const Invitacion = () => {
   const formRef = useRef(null);
   const buttonRef = useRef(null);
 
+  const initRef = useRef(null);
+
   const [isVisible, setIsVisible] = useState(false);
   const [canPlay, setCanPlay] = useState(false);
   const [hasPlayed, setHasPlayed] = useState(false);
@@ -87,8 +89,6 @@ const Invitacion = () => {
 
     get();
   }, []);
-
-  useEffect(() => {}, []);
 
   const [buttonActive, setButtonActive] = useState({
     iglesia: true,
@@ -216,10 +216,22 @@ const Invitacion = () => {
     actualizarDocumento(persona.id, newData);
   };
 
+  useEffect(() => {
+    if (songRef.current) {
+      initRef.current.click();
+      songRef.current.play();
+    }
+  }, [persona]);
+
   return (
-    <div onClick={() => {}} className="overflow-hidden">
+    <div ref={initRef} className="overflow-hidden">
       <div ref={divRef} style={{ height: "0px" }}>
-        {/* <audio ref={songRef} src={"/audio/cancion.mp3"} controls /> */}
+        <audio
+          ref={songRef}
+          src={"/audio/cancion.mp3"}
+          controls
+          style={{ height: "0px" }}
+        />
       </div>
 
       <div
@@ -254,13 +266,6 @@ const Invitacion = () => {
         </div>
       </div>
 
-      <audio
-        ref={songRef}
-        src={"/audio/cancion.mp3"}
-        controls
-        style={{ height: "0px" }}
-      />
-
       <div className="relative text-black leading-8 flex justify-center items-center flex-col gap-5 text-center font-playfair p-5 bg-[#fcfcfc]">
         {isActiveModal && (
           <div
@@ -282,15 +287,15 @@ const Invitacion = () => {
 
               <div className="space-y-1">
                 <p className="text-lg font-semibold fonita">
-                  Tienes {persona.total} pases disponibles:
+                  Tienes {persona?.total} pases disponibles:
                 </p>
 
                 <div className={clsx("flex justify-center items-center gap-5")}>
-                  <p>{persona.pases.adultos} Adultos</p>
-                  {persona.pases.niños && <p>{persona.pases.niños} Niños</p>}
+                  <p>{persona?.pases.adultos} Adultos</p>
+                  {persona?.pases.niños && <p>{persona?.pases.niños} Niños</p>}
                 </div>
 
-                {persona.pases.extras && (
+                {persona?.pases.extras && (
                   <div className="font-bold text-primary">
                     <p className="underline p-1">
                       {persona.pases.extras} Extras
