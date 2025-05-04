@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Italiana&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Italiana&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
 @import "tailwindcss";
 
 :root {
@@ -10,6 +12,9 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-italiana: "Italiana", sans-serif;
+  --font-playfair: "Playfair Display", sans-serif;
+  --color-primary: #e3aaaa;
 }
 
 @media (prefers-color-scheme: dark) {

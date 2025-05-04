@@ -1,4 +1,7 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  allowedDevOrigins: ["local-origin.dev", "*.local-origin.dev"],
+  reactStrictMode: true,
+};
 
 export default nextConfig;
