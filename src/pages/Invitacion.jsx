@@ -60,7 +60,10 @@ const Invitacion = () => {
 
       const { pases, reservacion } = data[0];
       const { adultos, niños } = pases;
-      const total = parseInt(adultos) + parseInt(niños);
+      const total =
+        niños || niños > 0
+          ? parseInt(adultos) + parseInt(niños)
+          : parseInt(adultos);
 
       setValueAssistance(reservacion);
 
