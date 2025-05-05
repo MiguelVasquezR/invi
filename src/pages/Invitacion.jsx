@@ -96,11 +96,8 @@ const Invitacion = () => {
   });
 
   useEffect(() => {
-    if (isActiveModal && formRef.current) {
-      formRef.current.scrollIntoView({
-        behavior: "smooth",
-        block: "center",
-      });
+    if (isActiveModal && formRef.current && !valueAssistance) {
+      formRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
       formRef.current.focus();
     }
 
@@ -214,6 +211,7 @@ const Invitacion = () => {
     };
 
     actualizarDocumento(persona.id, newData);
+    setIsActiveModal(false);
   };
 
   useEffect(() => {
@@ -269,14 +267,15 @@ const Invitacion = () => {
       <div className="relative text-black leading-8 flex justify-center items-center flex-col gap-5 text-center font-playfair p-5 bg-[#fcfcfc]">
         {isActiveModal && (
           <div
-            onClick={() => {
+            onClick={(e) => {
               setIsActiveModal(false);
             }}
-            className="w-full h-full bg-black/50 absolute z-[200] flex justify-center items-center"
+            className="w-full h-full bg-black/50 absolute z-50 flex justify-center items-center"
           >
             <form
               ref={formRef}
-              className="bg-white rounded-xl w-[90%] max-w-lg p-6 shadow-lg space-y-6 text-gray-800"
+              onClick={(e) => e.stopPropagation()}
+              className="bg-white rounded-xl w-[90%] max-w-lg p-6 shadow-lg space-y-6 text-gray-800 z-[100]"
             >
               <div className="space-y-1">
                 <p className="text-lg font-semibold font-italiana">
@@ -323,10 +322,11 @@ const Invitacion = () => {
                 <label className="relative inline-flex items-center cursor-pointer">
                   <input
                     className="sr-only peer"
-                    defaultValue={valueAssistance}
                     checked={valueAssistance}
                     type="checkbox"
-                    onChange={() => {
+                    onChange={(e) => {
+                      e.stopPropagation();
+                      console.log(e.target.checked);
                       setValueAssistance(!valueAssistance);
                     }}
                   />
@@ -335,17 +335,11 @@ const Invitacion = () => {
               </div>
 
               <button
-                onClick={() => {
-                  setIsActiveModal(false);
-                  buttonRef.current.scrollIntoView({
-                    behavior: "smooth",
-                    block: "center",
-                  });
-                  buttonRef.current.focus();
+                onClick={(e) => {
                   confirm();
                 }}
                 className="bg-primary rounded-md p-2 w-full text-white font-bold"
-                disabled={persona?.confirmacion}
+                disabled={persona?.confirmacion || false}
               >
                 {!persona?.confirmacion
                   ? "Confirmar mi asistencia"
@@ -453,9 +447,12 @@ const Invitacion = () => {
                 />
               </div>
               <p className="text-[12px] text-gray-500">
-                **Sabemos que está un poco retirado, pero al terminar la
-                ceremonia habrá transporte hacia la hacienda. <br />
-                ¡Queremos que disfrutes sin preocupaciones!**
+                Sabemos que está un poco retirado, pero tendrémos transporte de
+                ida y de regreso. Terminado la ceremonia religiosa, habrá un
+                autobús que te llevará a la hacienda. <br />
+                El regreso será a las 23:00 hrs. <br />
+                <br />
+                ¡Queremos que disfrutes sin preocupaciones!
               </p>
             </div>
           </div>
