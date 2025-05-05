@@ -340,7 +340,7 @@ const Invitacion = () => {
               </div>
 
               <a
-                href=".me/5212288538444?text=Hola, ame. Tengo una duda sobre los 15 años de tu hija ☺️"
+                href="https://wa.me/5212288538444?text=Hola, ame. Tengo una duda sobre los 15 años de tu hija ☺️"
                 className="underline text-blue-500 my-5 flex justify-center items-center"
                 target="_blank"
               >
